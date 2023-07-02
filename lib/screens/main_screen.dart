@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(15),
             child: Container(
               constraints: const BoxConstraints(maxWidth: 600),
               child: Form(
@@ -56,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                               if (_formKey.currentState!.validate()) {
                                 setState(() {
                                   _isLoading = true;
+                                  _isButtonIgnored = true;
                                 });
                                 final bool result = await repo.postToRepo(MessageClass(
                                     name: _nameController.text,
@@ -72,6 +73,7 @@ class _MainScreenState extends State<MainScreen> {
                                 }
                                 setState(() {
                                   _isLoading = false;
+                                  _isButtonIgnored = false;
                                 });
                               }
                             },
